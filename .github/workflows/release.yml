@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Validate
+        run: py Tools/AssetPipeline/validate_assets.py --all
+      - name: Package (requires UE 5.4)
+        shell: pwsh
+        run: |
+          if (Test-Path "Engine/UE_5.4/Engine/Binaries/Win64/UnrealEditor.exe") {
+            .\Scripts\Build.ps1 -Target Game -Config Shipping
+          } else {
+            echo "UE not installed in CI — skip packaging (scaffold only)"
+          }
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            StagedBuilds/**/*.pak
+            Documentation/*.md

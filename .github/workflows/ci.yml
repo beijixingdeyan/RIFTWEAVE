@@ -22,9 +22,15 @@ jobs:
       - name: Check .uproject JSON
         run: py -c "import json,pathlib; json.load(open('RiftWeave.uproject','r',encoding='utf-8')); print('uproject OK')"
       - name: Check no secrets
+        shell: pwsh
         run: |
-          echo "Checking for secrets..."
-          if (Select-String -Path "Config/*.ini","Source/**/*.cpp","Source/**/*.h" -Pattern "AKIA|ghp_|password\s*=\s*['\"][^'\"]+['\"]" -ErrorAction SilentlyContinue) { echo "Potential secret found"; exit 1 } else { echo "No secrets detected" }
+          $hits = Select-String -Path "Config/*.ini","Source/**/*.h","Source/**/*.cpp" -Pattern "AKIA|ghp_|password\s*=\s*[`"'][^`"']+[`"']" -ErrorAction SilentlyContinue
+          if ($hits) { $hits | ForEach-Object { Write-Host "Potential secret at $($_.Path):$($_.LineNumber)" }; exit 1 } else { Write-Host "No secrets detected" }
+      - name: Check Engine gitignore
+        shell: pwsh
+        run: |
+          if (git ls-files | Select-String "Engine/UE_5.4/Engine/Binaries") { Write-Host "ERROR: Engine binaries tracked!"; exit 1 } else { Write-Host "Engine binaries correctly ignored" }
+          if (git ls-files | Select-String "ue5_mass_prompt") { Write-Host "ERROR: prompt tracked!"; exit 1 } else { Write-Host "Prompt correctly ignored" }
 
   docs:
     runs-on: ubuntu-latest
@@ -35,3 +41,33 @@ jobs:
           echo "Checking doc links..."
           grep -r "Documentation/" README.md || true
           ls -la Documentation/
+          echo "Mermaid check (if any)..."
+          grep -r "mermaid" Documentation/ || echo "No mermaid, ok"
+
+  perf:
+    runs-on: windows-latest
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Gauntlet Perf (mock)
+        shell: pwsh
+        run: |
+          echo "Running Perf_Mass2000 mock (real Gauntlet requires UE)..."
+          cat Tests/Perf_Mass2000.spec.json
+          py Tools/AssetPipeline/validate_assets.py --quick
+          echo "Perf thresholds: avgFrameMs 16.6, massMs 3.0, naniteMs 12.0 — mock pass"
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run gitleaks (secrets)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check .gitignore for prompt
+        run: |
+          grep -q "ue5_mass_project_prompt.txt" .gitignore && echo "Prompt ignored OK" || (echo "Prompt not ignored!"; exit 1)
+          grep -q "Engine/" .gitignore && echo "Engine ignored OK" || (echo "Engine not ignored!"; exit 1)

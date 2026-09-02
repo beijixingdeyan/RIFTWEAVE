@@ -14,5 +14,11 @@
 | 09 | PipelineAndTools | 关卡工具 + 资产流 + 自动化测试 |
 | 10 | ProductionPlan | 2-3 年排期 + 风险 |
 | 11 | BusinessAndLiveOps | 定价 + 赛季 + 社区 + UGC |
+| 14 | Accessibility | 无障碍（色盲/单手/字幕） |
+| 15 | Performance | 性能预算 + Nanite/Lumen/Mass |
+| 16 | APIDocumentation | C++ / BP API |
+| 17 | ArtBible | 织物现实主义 + Substrate |
+| 18 | QAPlan | 自动化 + 人工 |
+| 19 | Postmortem | 反思 + 数据驱动 |
 
 > 引擎外可读：无需 UE，纯 Markdown 即可评审完整 GDD。

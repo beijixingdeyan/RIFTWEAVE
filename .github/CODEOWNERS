@@ -1,0 +1,6 @@
+# CODEOWNERS for RiftWeave
+* @WeaveWorks/core
+/Source/RiftWeave/ @WeaveWorks/gameplay
+/Documentation/ @WeaveWorks/design
+/Content/ @WeaveWorks/art
+/Config/ @WeaveWorks/tech

@@ -1,6 +1,9 @@
-# Security
-
-Report vulnerabilities via GitHub Security Advisories (private). No credentials in repo.
-
-- Do not commit `.env`, `*.pem`, or `Saved/Config/*.ini`
-- CI checks for secret patterns (`AKIA`, `ghp_`)
+# Security Policy
+## Reporting
+Use GitHub Security Advisories (private). Do not open public issues for vulns.
+## Scope
+- No secrets in repo (checked via CI: AKIA, ghp_, password=)
+- Engine binaries gitignored (Engine/**)
+- Prompt file ignored (ue5_mass_project_prompt.txt)
+## Supported
+- Latest main branch, UE 5.4
