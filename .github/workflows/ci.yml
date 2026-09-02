@@ -1,0 +1,37 @@
+name: RiftWeave CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate assets & docs
+        run: py Tools/AssetPipeline/validate_assets.py --all
+      - name: Check .uproject JSON
+        run: py -c "import json,pathlib; json.load(open('RiftWeave.uproject','r',encoding='utf-8')); print('uproject OK')"
+      - name: Check no secrets
+        run: |
+          echo "Checking for secrets..."
+          if (Select-String -Path "Config/*.ini","Source/**/*.cpp","Source/**/*.h" -Pattern "AKIA|ghp_|password\s*=\s*['\"][^'\"]+['\"]" -ErrorAction SilentlyContinue) { echo "Potential secret found"; exit 1 } else { echo "No secrets detected" }
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check docs links
+        run: |
+          echo "Checking doc links..."
+          grep -r "Documentation/" README.md || true
+          ls -la Documentation/

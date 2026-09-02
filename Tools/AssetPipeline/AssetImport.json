@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "policies": [
+    { "path": "Content/World/Biomes/ObsidianForge/Meshes", "nanite": true, "lod": "auto" },
+    { "path": "Content/World/Biomes/Frostvein/Meshes", "nanite": true, "lod": "auto" },
+    { "path": "Content/World/Biomes/LuminousCanopy/Meshes/Trunks", "nanite": true, "lod": "auto" },
+    { "path": "Content/World/Biomes/LuminousCanopy/Meshes/Foliage", "nanite": false, "lod": "4 + impostor" },
+    { "path": "Content/Weavers", "nanite": false, "lod": "4 skeletal" },
+    { "path": "Content/Niagara", "nanite": false, "lod": "n/a" }
+  ]
+}

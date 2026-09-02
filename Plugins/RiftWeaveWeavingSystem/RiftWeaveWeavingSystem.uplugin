@@ -1,0 +1,13 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "0.9.0",
+    "FriendlyName": "RiftWeave Weaving System",
+    "Description": "Core weaving logic: tear/drag/stitch, Chaos fields, pattern evaluation. Runtime + Editor tools.",
+    "Category": "Gameplay",
+    "CreatedBy": "WeaveWorks Studio",
+    "CanContainContent": true,
+    "IsBetaVersion": true,
+    "Installed": false,
+    "Modules": [{ "Name": "RiftWeaveWeavingSystem", "Type": "Runtime", "LoadingPhase": "Default" }]
+}

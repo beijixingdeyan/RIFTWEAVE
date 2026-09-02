@@ -1,0 +1,6 @@
+{
+  "name": "Mass 2000 Perf",
+  "map": "/Game/Maps/Test_Mass_2000",
+  "agents": 2000,
+  "criteria": { "avgFrameMs": 16.6, "massMs": 3.0, "naniteMs": 12.0 }
+}

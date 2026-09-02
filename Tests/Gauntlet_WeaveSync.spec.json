@@ -1,0 +1,7 @@
+{
+  "name": "WeaveSync 4-Player",
+  "clients": 4,
+  "map": "/Game/Maps/Test_Mass_2000",
+  "test": "WeaveSyncTest",
+  "successCriteria": { "stabilityDelta": 0.02, "serverTickMs": 14, "durationSec": 120 }
+}

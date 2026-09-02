@@ -1,0 +1,124 @@
+# Unreal Engine 5 — RiftWeave .gitignore
+# Generated for UE 5.4, curated for GitHub release (no private info)
+
+# --- Prompt / requirement file (do not publish) ---
+ue5_mass_project_prompt.txt
+*.prompt.txt
+
+# --- Unreal generated ---
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+.vs/
+.vscode/.ropeproject
+.vscode/ipch/
+
+# Compiled binaries
+*.pdb
+*.obj
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+
+# UE cooked content & packages
+Cooked/
+StagedBuilds/
+*.pak
+*.utoc
+*.ucas
+*.ushaderbytecode
+
+# DDC / Cache
+DerivedDataCache/*
+!DerivedDataCache/.gitkeep
+
+# --- Platform-specific ---
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# --- IDE ---
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.rider/
+
+# --- Secrets / local config ---
+# Never commit credentials, local overrides, or device-specific configs
+Config/Local*.ini
+*.private.ini
+Saved/Config/**/*.ini
+.env
+.env.local
+secrets.json
+*.pem
+*.key
+credentials*.json
+dsh-ssh.json
+.ssh/
+
+# Epic / Perforce
+.p4config
+.p4ignore
+
+# --- Large assets (use Git LFS instead) ---
+# Uncomment if not using LFS — keep repo lean
+# *.uasset
+# *.umap
+# *.fbx
+# *.wav
+# *.png
+# *.exr
+# *.hdr
+
+# --- Logs & temp ---
+*.log
+Logs/
+crash_*.dmp
+Saved/Logs/*
+Saved/Crashes/*
+Saved/Autosaves/*
+Saved/Autoreimport/*
+Saved/Collections/*
+Saved/Backup/*
+
+# --- Documentation exports (optional) ---
+# Keep source markdown, ignore generated HTML/PDF exports
+Documentation/_export/
+Documentation/.cache/
+
+# --- Tools local ---
+Tools/AssetPipeline/.venv/
+node_modules/
+__pycache__/
+*.pyc
+
+# --- OS generated ---
+*.stackdump

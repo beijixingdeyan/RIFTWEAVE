@@ -1,0 +1,12 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "0.9.0",
+    "FriendlyName": "Dimension Streaming",
+    "Description": "World Partition data-layer driver for dimension blending. Handles Lumen cross-GI weights and Nanite LOD bias per dimension.",
+    "Category": "World",
+    "CreatedBy": "WeaveWorks Studio",
+    "CanContainContent": false,
+    "IsBetaVersion": true,
+    "Modules": [{ "Name": "DimensionStreaming", "Type": "Runtime", "LoadingPhase": "PostEngineInit" }]
+}

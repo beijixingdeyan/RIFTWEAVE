@@ -1,0 +1,24 @@
+# Glossary — RiftWeave
+
+- **Weave**: Hold Weave button + drag to tear/drag/stitch. Core 5-min loop.
+- **Anchor**: Pin a seam; 2-4 needed for big rifts. Coupled physics.
+- **Stability (S)**: 0-1.2, governs success. Formula in 03_GameplaySystems.md.
+- **Rift**: Dimensional overlap volume (ARiftVolume, two EDimensionId).
+- **Pattern**: ULoomPattern DataAsset (Substrate seam + Niagara + StabilityBonus).
+- **DataLayer**: World Partition layer per biome (DL_Obsidian etc.).
+- **HLOD**: Hierarchical LOD for Nanite clusters (World Partition builder).
+- **MassAI**: Mass Entity crowd (elk/drone/sprite, FMassFragment).
+- **StateTree**: AI logic graph (ST_ElkHerd, ST_DronePatrol).
+- **SmartObject**: MassAI interaction point (SO_Weave etc.).
+- **MetaSounds**: Procedural audio graph (MS_Loom_Base, Quartz).
+- **Quartz**: Audio clock (120 BPM) for weave quantization.
+- **Iris**: UE replication system (adaptive NetUpdateFrequency).
+- **ReplicationGraph**: Relevance & dormancy (120m for Mass, 50m for debris).
+- **PCG**: Procedural Content Generation (PCG_RiftCracks).
+- **Substrate**: UE layered material (M_WeaveMaster).
+- **Chaos**: Destruction (GC) / cloth / field (AWeaveFieldSystem).
+- **Lumen**: Global illumination (HWRT PC, SWRT console).
+- **Nanite**: Virtualized geometry (rocks/trunks, not foliage/character).
+- **Thread**: Currency (cosmetics only, earnable).
+- **Plaza**: 50-player async market (top weaves).
+- **Ghost**: Async DataLayer echo of another player's weave.
