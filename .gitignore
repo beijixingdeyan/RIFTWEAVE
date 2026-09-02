@@ -120,5 +120,25 @@ node_modules/
 __pycache__/
 *.pyc
 
+# --- Unreal Engine installation (local, not committed) ---
+# UE downloaded to working directory per user request — do not commit engine binaries
+# GitHub push will NOT include 30-60 GB binaries; README is kept as placeholder
+Engine/**
+!Engine/README.md
+!Engine/UE_5.4/
+!Engine/UE_5.4/README.txt
+!Engine/.gitkeep
+UE_*/
+UnrealEngine/
+Epic/
+UE5/
+# Epic installer & cache (keep README, ignore binaries)
+EpicInstaller*.msi
+EpicInstaller*.exe
+LauncherVaultCache/
+# UE prerequisites & symbols
+*.pdb
+*.dsym
+
 # --- OS generated ---
 *.stackdump
