@@ -11,9 +11,11 @@ if (-not $InstallPath) { $InstallPath = Join-Path $ProjectRoot "Engine\UE_5.4" }
 $EngineDir = Split-Path $InstallPath -Parent
 $LauncherUrl = "https://epicgames-download1.akamaized.net/Builds/UnrealEngineLauncher/Installers/Windows/EpicInstaller-20.1.4.msi"
 $LauncherMsi = Join-Path $EngineDir "EpicInstaller-20.1.4.msi"
+$LocalLauncher = Join-Path $EngineDir "Launcher\Portal\Binaries\Win64\EpicGamesLauncher.exe"
 
-Write-Host "=== RIFTWEAVE — Install UE $EngineVersion to $InstallPath ===" -ForegroundColor Cyan
+Write-Host "=== RIFTWEAVE — Install UE $EngineVersion to $InstallPath (工作目录内) ===" -ForegroundColor Cyan
 Write-Host "Disk free E: $([math]::Round((Get-PSDrive E).Free/1GB,1)) GB (need ~40 GB binary, ~80 GB source)" -ForegroundColor White
+if (Test-Path $LocalLauncher) { Write-Host "[UE] Local Launcher found at $LocalLauncher (工作目录内, 已转移)" -ForegroundColor Green }
 
 New-Item -ItemType Directory -Force -Path $EngineDir | Out-Null
 Set-Content -Path (Join-Path $EngineDir ".gitkeep") -Value "" -Force
