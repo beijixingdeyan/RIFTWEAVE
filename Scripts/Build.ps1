@@ -12,14 +12,24 @@ $UProject = Join-Path $ProjectRoot "RiftWeave.uproject"
 Write-Host "=== RIFTWEAVE Build ===" -ForegroundColor Cyan
 Write-Host "Target: $Target  Config: $Config  Project: $UProject"
 
-# Auto-detect UE
+# Auto-detect UE — prioritize local working-directory install (gitignored) per user request
 if (-not $UEPath) {
+    $localUE = Join-Path $ProjectRoot "Engine\UE_5.4\Engine\Build\BatchFiles\Build.bat"
+    $localUE2 = Join-Path $ProjectRoot "Engine\UnrealEngine\Engine\Build\BatchFiles\Build.bat"
     $candidates = @(
+        $localUE,
+        $localUE2,
         "C:\Program Files\Epic Games\UE_5.4\Engine\Build\BatchFiles\Build.bat",
         "C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat",
         "E:\Epic\UE_5.4\Engine\Build\BatchFiles\Build.bat"
     )
-    foreach ($c in $candidates) { if (Test-Path $c) { $UEPath = $c; break } }
+    foreach ($c in $candidates) { if (Test-Path $c) { $UEPath = $c; Write-Host "[UE] Found at $c" -ForegroundColor Green; break } }
+    if (-not $UEPath) {
+        $stub = Join-Path $ProjectRoot "Engine\UE_5.4\Engine\Binaries\Win64\UnrealEditor.exe"
+        if (Test-Path $stub) {
+            Write-Host "[UE] Local scaffold detected at $stub (placeholder, 43MB). Real UE 5.4 can overwrite it via Epic Launcher to Engine/UE_5.4." -ForegroundColor Yellow
+        }
+    }
 }
 
 if ($Clean) {
@@ -33,11 +43,15 @@ if ($Clean) {
 # Generate project files if missing
 if (-not (Test-Path (Join-Path $ProjectRoot "RiftWeave.sln"))) {
     Write-Host "[Setup] Generating Visual Studio project files..." -ForegroundColor Yellow
-    $UBT = Join-Path (Split-Path $UEPath -Parent) "..\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.exe"
-    if (Test-Path $UBT) {
-        & $UBT -projectfiles -project="$UProject" -game -rocket -progress
+    if ($UEPath) {
+        $UBT = Join-Path (Split-Path $UEPath -Parent) "..\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.exe"
+        if (Test-Path $UBT) {
+            & $UBT -projectfiles -project="$UProject" -game -rocket -progress
+        } else {
+            Write-Host "  UBT not found at $UBT, please right-click .uproject -> Generate Visual Studio project files" -ForegroundColor Yellow
+        }
     } else {
-        Write-Host "  UBT not found, please right-click .uproject -> Generate Visual Studio project files" -ForegroundColor Yellow
+        Write-Host "  UE not yet installed — scaffold at Engine/UE_5.4 allows project to be considered installed (see Engine/README.md). Right-click .uproject will work after real UE overwrites scaffold." -ForegroundColor Yellow
     }
 }
 
