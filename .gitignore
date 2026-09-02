@@ -142,3 +142,7 @@ LauncherVaultCache/
 
 # --- OS generated ---
 *.stackdump
+
+# --- Dev gen scripts (not needed) ---
+Tools/gen_*.py
+
