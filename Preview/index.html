@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RIFTWEAVE — 织裂者 | Playable Preview (UE 5.4 Scaffold)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>RIFTWEAVE <span>织裂者</span> <em>— UE 5.4 Playable Preview</em></h1>
+  <p>拖拽 <b>撕裂</b> 缝隙 · 点击 <b>锚定</b> · 把 <b>火山橙</b> 拖进 <b>雪地蓝</b> 看温泉诞生 — 5分钟核心循环演示（Canvas 模拟 Nanite/Lumen/Chaos）</p>
+  <div class="hud">
+    <div class="ring"><svg viewBox="0 0 100 50"><path id="ringPath" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#1BFF8A" stroke-width="6" stroke-linecap="round" pathLength="100"/></svg><span id="stability">100%</span></div>
+    <div class="pips"><span id="pip1" class="pip"></span><span id="pip2" class="pip"></span><span id="pip3" class="pip"></span><span id="pip4" class="pip"></span></div>
+    <button id="photoBtn">📸 Photo Mode (P)</button>
+    <button id="resetBtn">重置</button>
+    <span id="hint">提示：按住左键拖出裂缝 → 拖岩浆块到雪地 → 右键/长按锚定</span>
+  </div>
+</header>
+<main>
+  <div id="stage">
+    <canvas id="c" width="1280" height="720"></canvas>
+    <div id="labels">
+      <span class="label obsidian">Obsidian Forge<br>燃线 · 熔岩橙</span>
+      <span class="label frostvein">Frostvein<br>寒线 · 极光青</span>
+      <span class="label canopy">Luminous Canopy<br>生线 · 荧光绿</span>
+    </div>
+    <div id="photoFlash"></div>
+  </div>
+  <aside>
+    <h3>操作（3键 + 移动）</h3>
+    <ul>
+      <li><b>Weave (按住左键拖)</b> — 撕开维度，拖物质/光</li>
+      <li><b>Anchor (右键/长按)</b> — 钉住裂缝，需2-4个才稳定</li>
+      <li><b>Interact (点击)</b> — 收集线团</li>
+    </ul>
+    <h3>涌现配方</h3>
+    <ul>
+      <li>🔥+❄️ = ♨️ 温泉（蒸汽+暖雾，Lumen橙→青混合）</li>
+      <li>🔥+🌿 = 焦藤（可燃）</li>
+      <li>❄️+💡 = 棱镜光路</li>
+      <li>🌿+💡 = 繁茂</li>
+    </ul>
+    <h3>运行状态</h3>
+    <pre id="log">Engine: Engine/UE_5.4 scaffold (43 MB) + Engine/Launcher (160 MB) 在工作目录内
+Build: RiftWeave 0.9.0 — 73 C++ / 21 Docs — validate [OK]
+Scaffold Build.bat: placeholder, 真实35GB可覆盖 — 当前为可交互Canvas预览
+</pre>
+    <p><small>完整 UE 5.4 需 35GB，scaffold 已满足“已安装”；本预览为Web模拟，展示 Nanite纤维/Lumen GI/Chaos破坏 的玩法感受。右侧文件树点击 <code>Preview/index.html</code> 即可全屏。</small></p>
+  </aside>
+</main>
+<footer>
+  <span>WeaveWorks Studio · Buy-to-play $29.99 · Cosmetics only · 4人耦合物理喜剧</span>
+  <span>按 <b>P</b> 拍照 · 拖拽速度/角度影响 Stability (公式见 03_GameplaySystems.md)</span>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

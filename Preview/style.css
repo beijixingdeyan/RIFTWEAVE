@@ -1,0 +1,23 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial}
+body{background:#0A0A0F;color:#E6E6E6;overflow:hidden}
+header{padding:12px 16px;background:#0f0f14;border-bottom:1px solid #1BFF8A33}
+h1{font-size:22px;letter-spacing:2px} h1 span{font-weight:300;opacity:0.7} h1 em{font-size:12px;color:#1BFF8A;font-style:normal;margin-left:8px}
+p{opacity:0.85;margin:6px 0 8px;font-size:13px}
+.hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ring{position:relative;width:90px;height:46px} .ring svg{width:90px;height:46px;filter:drop-shadow(0 0 6px #1BFF8A)} #stability{position:absolute;left:0;right:0;top:18px;text-align:center;font-weight:700;font-size:12px}
+.pips{display:flex;gap:6px} .pip{width:10px;height:10px;border-radius:50%;border:1.5px solid #666;background:#222} .pip.on{background:#FF4D00;box-shadow:0 0 8px #FF4D00;border-color:#FF4D00} .pip.on:nth-child(2){background:#00E5FF;box-shadow:0 0 8px #00E5FF} .pip.on:nth-child(3){background:#1BFF8A}
+button{padding:6px 10px;border-radius:8px;border:1px solid #333;background:#1a1a20;color:#fff;cursor:pointer}
+button:hover{border-color:#1BFF8A}
+#hint{font-size:12px;opacity:0.7}
+main{display:flex;height:calc(100vh - 150px)}
+#stage{flex:1;position:relative;background:#000;overflow:hidden}
+#c{width:100%;height:100%;display:block;cursor:crosshair}
+#labels{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;padding:12px;opacity:0.95}
+.label{font-size:11px;line-height:1.2;padding:6px 8px;border-radius:8px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);border:1px solid currentColor}
+.label.obsidian{color:#FF4D00;align-self:flex-start} .label.frostvein{color:#00E5FF;align-self:flex-end;margin-bottom:40px} .label.canopy{color:#1BFF8A;align-self:center}
+#photoFlash{position:absolute;inset:0;background:white;opacity:0;pointer-events:none;transition:opacity 0.2s}
+aside{width:320px;background:#0f0f14;border-left:1px solid #222;padding:12px;overflow:auto}
+aside h3{font-size:13px;margin:10px 0 6px;color:#1BFF8A}
+aside ul{font-size:12px;line-height:1.6;margin-left:16px}
+#log{font-size:11px;background:#000;border:1px solid #222;border-radius:8px;padding:8px;white-space:pre-wrap;line-height:1.4;max-height:160px;overflow:auto}
+footer{display:flex;justify-content:space-between;padding:8px 16px;font-size:11px;opacity:0.7;border-top:1px solid #222}
